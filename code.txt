@@ -1,0 +1,205 @@
+programa { //VNW_BankV3 Primeiro desafio do bootcamp Vai na Web aprimorado. adicionado sistema de login, sistemas de depósito, saque, consulta e sistema de câmbio de moedas.
+  inclua biblioteca Matematica --> m
+  inclua biblioteca Util --> u
+
+  cadeia usuario = "pepe"
+  cadeia senha = "vnw123"
+  real saldo = 0.0, saque, deposito
+  inteiro tentativas = 0
+  logico fim = falso
+  inteiro opc, valor
+
+  funcao inicio() { 
+    escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+    escreva("😍 BANCO VNW 😍\n")
+    escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+    u.aguarde(800)
+    
+    enquanto(tentativas < 3 e fim == falso) {
+      cadeia usuario_i
+      cadeia senha_i
+
+      escreva("\n Nome de usuário: ")
+      leia(usuario_i)
+      u.aguarde(1000)
+
+      escreva(" Senha: ")
+      leia(senha_i)
+      u.aguarde(1000)
+      limpa()
+
+      Verificar(usuario_i, senha_i)
+    }
+  }
+
+  funcao Verificar(cadeia user, cadeia pass) {
+    se(user == usuario e pass == senha) {
+      escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+      escreva("🎉 Seja bem vindo 🎉\n")
+      fim = verdadeiro      
+    }
+    senao {
+      tentativas++
+      se(tentativas < 3) {
+        u.aguarde(800)
+        escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+        escreva("❗❗ ACESSO NEGADO ❗❗ \n")
+        escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+        escreva("Tentativas restantes: ", 3 - tentativas)
+      } senao {
+        u.aguarde(800)
+        escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+        escreva("🚫 USUÁRIO BLOQUEADO 🚫\n")
+        escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+      }
+    }
+    se(user == usuario e pass == senha) {
+      enquanto(verdadeiro){
+    escreva("\n O que deseja fazer? \n")
+    escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+    u.aguarde(300)
+    escreva("\n1) ► DEPÓSITO \n")
+    escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    u.aguarde(300)
+    escreva("\n2) ► SAQUE \n")
+    escreva("▬▬▬▬▬▬▬▬▬▬▬")
+    u.aguarde(300)
+    escreva("\n3) ► CONSULTAR SALDO \n")
+    escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    u.aguarde(300)
+    escreva("\n4) ► CÂMBIO \n")
+    escreva("▬▬▬▬▬▬▬▬▬▬")
+    u.aguarde(300)
+    escreva("\n5) ► SAIR \n")
+    escreva("▬▬▬▬▬▬▬▬▬▬")
+    escreva("\nDigite sua escolha: ")
+    leia(opc)
+    limpa()
+
+    escolha(opc){
+      caso 1:
+        u.aguarde(800)
+        escreva("\n💲 ÁREA DE DEPÓSITO 💲\n")
+        u.aguarde(1000)
+        escreva("Digite o valor que deseja depositar: R$")
+        leia(deposito)
+        limpa()
+        saldo = saldo + deposito
+        escreva("Valor depositado com sucesso!\n")
+        u.aguarde(1000)
+      pare
+
+      caso 2:
+        u.aguarde(800)
+        escreva("\n💲 ÁREA DE SAQUE 💲\n")
+        u.aguarde(1000)
+        escreva("Digite o valor do saque: ")
+        leia(saque)
+        se (saque==0){
+        escreva("Digite um valor válido.\n")
+        u.aguarde(1000)
+      }
+      senao se(saque>saldo){
+        u.aguarde(800)
+        escreva("Seu saldo é insuficiente.\n")
+        u.aguarde(1000)
+      } 
+      senao {
+        saldo=saldo-saque
+        u.aguarde(800)
+        escreva("Valor sacado com sucesso! Seu saldo atual é " , saldo,  "R$")
+        u.aguarde(1000)
+      }
+      pare
+
+      caso 3:
+        u.aguarde(800)
+        escreva("\n💲 ÁREA DE CONSULTA 💲\n")
+        u.aguarde(1000)
+        escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+        escreva("\nSeu saldo atual é " , saldo,  "R$\n")
+        escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+      pare
+
+      caso 4:
+        inteiro opc, valor
+
+    escreva("► Digite um valor: R$")
+  
+    leia(valor)
+    u.aguarde(1000)
+    limpa()
+
+    escreva("Para qual moeda deseja converter? \n")
+    escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+    escreva("1 ► Dólar\n")
+    escreva("2 ► Euro\n")
+    escreva("3 ► Franco suíço\n")
+    escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+    u.aguarde(1000)
+    leia(opc)
+    limpa()
+
+    escolha(opc){
+      caso 1:
+        real resultado = valor / 4.87
+        u.aguarde(1000)
+        escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n")
+        escreva(" 💲 R$", valor, " = US$", m.arredondar(resultado, 2), " 💲\n")
+        escreva("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+      pare
+
+      caso 2:
+        real resultado = valor / 5.19
+        u.aguarde(1000)
+        escreva("↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️\n")
+        escreva(" 💲 R$", valor, " = €", m.arredondar(resultado, 2), " 💲\n")
+        escreva("↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️↔️")
+      pare
+
+      caso 3:
+        real resultado = valor / 5.42
+        u.aguarde(1000)
+        escreva("⚏⚏⚏⚏⚏⚏⚏⚏⚏⚏⚏⚏\n")
+        escreva(" 💲 R$", valor, " = ₣", m.arredondar(resultado, 2), " 💲\n")
+        escreva("⚏⚏⚏⚏⚏⚏⚏⚏⚏⚏⚏⚏")
+      pare
+
+      caso contrario
+        u.aguarde(1000)
+        escreva("≆≆≆≆≆≆≆≆≆≆≆≆≆≆≆\n")
+        escreva("❌ Opção inválida ❌\n")
+        escreva("≆≆≆≆≆≆≆≆≆≆≆≆≆≆≆")
+    }
+      pare
+
+      caso 5:
+        u.aguarde(100)
+        escreva("Volte sempre! Banco VNW agradece por sua presença.")
+        u.aguarde(1000)
+        limpa()
+        escreva("\nfechando.")
+        u.aguarde(500)
+        limpa()
+        escreva("\nfechando..")
+        u.aguarde(500)
+        limpa()
+        escreva("\nfechando...")
+        u.aguarde(500)
+        limpa()
+        escreva("\nfechando.")
+        u.aguarde(500)
+        limpa()
+        escreva("\nfechando..")
+        u.aguarde(500)
+        limpa()
+        escreva("\nfechando...")
+        u.aguarde(500)
+        limpa()
+        inicio()
+      pare
+    }
+    }
+  }
+  }
+}
