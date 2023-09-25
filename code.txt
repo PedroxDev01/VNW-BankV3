@@ -1,4 +1,4 @@
-programa { //VNW_BankV3 Primeiro desafio do bootcamp Vai na Web aprimorado. adicionado sistema de login, sistemas de depósito, saque, consulta e sistema de câmbio de moedas.
+programa { //VNW_BankV3 
   inclua biblioteca Matematica --> m
   inclua biblioteca Util --> u
 
